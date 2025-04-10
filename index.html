@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metta Mandala</title>
+    <title>Meditation_Painting</title>
     <style>
         :root {
             --primary: #f9bf3b;
             --secondary: #f1c40f;
             --accent-glow: rgba(249, 191, 59, 0.3);
             --text: #f5f5f5;
-            --dark: #484848;
+            --dark: #000000;
             --shadow: rgba(0, 0, 0, 0.5);
             --transition: all 0.3s ease;
         }
@@ -23,7 +23,7 @@
         }
         
         body {
-            background-color: var(--dark);
+            background-color: #1F1E1C;
             color: var(--text);
             display: flex;
             align-items: center;
@@ -40,7 +40,7 @@
         
         canvas {
             display: block;
-            background: black;
+            background: #1F1E1C;
             border-radius: 50%;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
             position: absolute;
@@ -72,31 +72,46 @@
             position: absolute;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             align-items: center;
-            bottom: 10px;
+            bottom: 15px;
             left: 0;
             width: 100%;
             z-index: 10;
         }
         
         .nav-button {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.6);
-            color: var(--primary);
-            border: 1px solid var(--primary);
+            background: #333333;
+            color: #f5f5f5;
+            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: var(--transition);
+            padding: 0;
+        }
+        
+        .nav-button svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
         
         .nav-button:hover {
-            background: rgba(249, 191, 59, 0.2);
             transform: translateY(-2px);
+        }
+        
+        .nav-button.download {
+            background: #444444;
+        }
+        
+        .nav-button.prev, .nav-button.next {
+            background: #444444;
+            border: 2px solid #e67e22;
         }
         
         .nav-button:disabled {
@@ -173,10 +188,26 @@
         </div>
         
         <div class="controls">
-            <button id="prevLevelBtn" class="nav-button">←</button>
-            <button id="clearBtn" class="nav-button">⊗</button>
-            <button id="nextLevelBtn" class="nav-button">→</button>
-            <button id="downloadBtn" class="nav-button">↓</button>
+            <button id="prevLevelBtn" class="nav-button prev" title="Previous Level">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            <button id="clearBtn" class="nav-button" title="Eraser">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5.72 5.72a.75.75 0 0 1 1.06 0L12 10.94l5.22-5.22a.75.75 0 1 1 1.06 1.06L13.06 12l5.22 5.22a.75.75 0 1 1-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 0 1-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 0 1 0-1.06z"/>
+                </svg>
+            </button>
+            <button id="nextLevelBtn" class="nav-button next" title="Next Level">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+            <button id="downloadBtn" class="nav-button download" title="Download">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/>
+                </svg>
+            </button>
         </div>
     </div>
 
@@ -352,8 +383,8 @@
             tempCanvas.height = mandalaCanvas.height;
             const tempCtx = tempCanvas.getContext('2d');
             
-            // Fill with black background
-            tempCtx.fillStyle = 'black';
+            // Fill with background color
+            tempCtx.fillStyle = '#1F1E1C';
             tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
             
             // Draw all layers
